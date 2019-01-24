@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>My Hue Remote</title>
+        <link rel="stylesheet" href="style.css" type="text/css" />
+    </head>
+    <body>
+      <ul class="topnav">
+        <a href="index.html">
+        </a>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="sliders.html">Sliders</a></li>
+        <li><a href="settings.html">Presets</a></li>
+        <a href="settings.html"><img class="image" src="settings.png" border="0" alt="Settings"></a>
+      </ul>
+
+        <div class="menu">
+            <div class="menuL"></div>
+
+
+            <div id='knoppen'>
+	            <button id='buttonAan' type="submit" class="button" onclick="sendRequest(1)">Zet aan</buttoan>
+	            <button id='buttonUit' type="submit" class="button" onclick="sendRequest(0)">Zet uit</button>
+              <input type="button" class="button1" onClick="disco_off_on()" value="disco">
+              <input type="button" class="button1" onClick="spectrum_off_on()" value="spectrum">
+            </div>
+
+
+
+
+            <script type="text/javascript" src="on_off.js"></script>
+            <script type="text/javascript" src="test.js"></script>
+        <div class="add">
+          <br>kleur:</br>
+          <input type="range" min="0" max="65535" value="1" id="hue" onclick="color()">
+          <br>Brightnes:<br>
+          <input type="range" min="0" max="250" value="2" id="bri" onclick="bright()">
+          <br>Saturation:<br>
+          <input type="range" min="0" max="250" value="3" id="sat" onclick="saturation()">
+          <br>Temparature:<br>
+          <input type="range" min="0" max="250" value="4" id="ct" onclick="temp()">
+          <button value="add" onClick="add()">add</button>
+        </div>
+    </body>
+</html>
