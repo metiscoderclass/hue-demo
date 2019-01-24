@@ -1,0 +1,13 @@
+body {
+  font-size: 30px;
+
+}
+
+#hueImage {
+  /* float: center; */
+  width: 230px;
+}
+
+#hueImage::after {
+  clear: both;
+}

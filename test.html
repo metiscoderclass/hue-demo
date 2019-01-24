@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	<head>
+		<meta charset="utf-8">
+		<title>Philips Hue lampen!</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<div id='knoppen'>
+			<div id="aanuitKnoppen">
+				<button id='buttonAan'>Zet alle lampen aan</button>
+				<button id='buttonUit'>Zet alle lampen uit</button>
+			</div>
+			<p>Brightness (felheid): <input type='number' id='bri' min='0' max='255' value='255'></input> (tussen 0 en 255)</p>
+			<div>
+				<p>Hue (kleur): <input type='number' id='hue' min='0' max='65535' value='0'> </input></p><img id="hueImage" src="Hue-kleuren2.png" />
+			</div>
+			<button id='pasToe'>Pas Hue en Brightness aan</button>
+		</div>
+		<script src="Test.js"></script>
+	</body>
+</html>

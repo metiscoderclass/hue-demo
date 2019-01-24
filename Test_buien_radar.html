@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<button type="button" onclick="loadXMLDoc()">
+Klik hier</button>
+
+<p id="demo"></p>
+
+<script>
+function loadXMLDoc() {
+  var xmlhttp = new XMLHttpRequest();
+  xmlhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      myFunction(this);
+    }
+  };
+  xmlhttp.open("GET", "https://api.buienradar.nl/", true);
+  xmlhttp.send();
+}
+
+function myFunction(xml) {
+	console.log("Test");
+	var x, i, xmlDoc, txt;
+  	xmlDoc = xml.responseXML;
+  	txt = "";
+  	x = xmlDoc.getElementsByTagName("weerstation");
+
+    //path = "/buienradarnl/weergegevens/actueel_weer/weerstations/weerstation[@id=6240]/temperatuurGC";
+    //path = "/buienradarnl/weergegevens/actueel_weer/weerstations/weerstation[stationnaam='Meetstation Schiphol']/temperatuurGC";
+    path = "/buienradarnl/weergegevens/actueel_weer/weerstations//temperatuurGC";
+
+    res = xmlDoc.evaluate(path, xmlDoc, null, XPathResult.ANY_TYPE,null);
+    console.log(res);
+
+    var result = res.iterateNext();
+    var temperatuurLijst = [];
+    while (result) {
+      var waarde = result.childNodes[0].nodeValue;
+      if (waarde != '-'){
+        temperatuurLijst.push(Number(waarde));
+      }
+      txt += waarde + "<br>";
+      result = res.iterateNext();
+    }
+
+    console.log(temperatuurLijst);
+    console.log(Math.max.apply(null, temperatuurLijst));
+      // Dit laat het hele xml bestand zien
+    console.log(xmlDoc);
+    console.log(x);
+    console.log(txt);
+
+  	// Dit laat alles zien van weerstation Amsterdam (Schiphol)
+  	//console.log(x[34]);
+
+  	// Dit laat de huidige temperatuur zien
+  	//console.log(x[34].childNodes[13].innerHTML);
+
+  	// Dit laat de lijst met eigenschappen zien
+  	console.log(x[34].childNodes);
+
+  	//console.log(x.getElementsByTagName("temperatuurGC"));
+  	var temperatuur = x[34].childNodes[13].innerHTML;
+
+  	if (temperatuur > 20){
+  		document.getElementById("demo").innerHTML = "Lekker warm hoor! Het is " + temperatuur + " graden.";
+  	}else{
+  		document.getElementById("demo").innerHTML = "Beetje frisjes.... " + temperatuur + " graden.";
+  	}
+}
+</script>
+
+</body>
+</html>
